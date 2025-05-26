@@ -1,17 +1,18 @@
 
 import adapter from '@sveltejs/adapter-static';
 
-const dev = process.env.NODE_ENV === 'development';
+import {
+  vitePreprocess
+} from '@sveltejs/kit/vite';
 
-export default {
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+
   kit: {
-    adapter: adapter({
-      fallback: 'index.html',
-      strict: false
-    }),
-    paths: {
-      base: dev ? '' : '/svelte-project-4c-Rene711',
-    }
+    adapter: adapter(),
+    base: ''
   }
 };
 
+export default config;
